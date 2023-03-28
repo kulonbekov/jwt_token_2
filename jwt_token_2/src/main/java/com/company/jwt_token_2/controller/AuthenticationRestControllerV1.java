@@ -4,9 +4,11 @@ import com.company.jwt_token_2.models.User;
 import com.company.jwt_token_2.models.dtos.AuthenticationRequestDto;
 import com.company.jwt_token_2.models.dtos.AuthenticationResponseDto;
 import com.company.jwt_token_2.models.dtos.RegisterRequestDto;
+import com.company.jwt_token_2.repository.RoleRep;
 import com.company.jwt_token_2.security.jwt.JwtTokenProvider;
 import com.company.jwt_token_2.services.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -27,12 +29,10 @@ public class AuthenticationRestControllerV1 {
     public ResponseEntity login(@RequestBody AuthenticationRequestDto requestDto){
         try{
             String username = requestDto.getUsername();
+
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username,requestDto.getPassword()));
             User user = userService.findByUsername(username);
 
-            if(user == null){
-                throw new UsernameNotFoundException("User with username: " + username + " not found");
-            }
             String token = jwtTokenProvider.createToken(username, user.getRoles());
 
             AuthenticationResponseDto responseDto = new AuthenticationResponseDto();
@@ -41,7 +41,8 @@ public class AuthenticationRestControllerV1 {
 
             return ResponseEntity.ok(responseDto);
         } catch (AuthenticationException e){
-            throw new BadCredentialsException("Invalid username or password");
+            return new ResponseEntity<>("Invalid username or password", HttpStatus.NOT_FOUND);
+
         }
     }
 
@@ -50,9 +51,13 @@ public class AuthenticationRestControllerV1 {
         try{
             registerDto = userService.register(registerDto);
 
-            return ResponseEntity.ok("registration completed successfully");
+            String result = "Registration completed successfully " +
+                    "\n username: " + registerDto.getUsername() +
+                    "\n secret_key: " + registerDto.getSecretKey();
+
+            return ResponseEntity.ok(result);
         }catch (Exception e){
-            throw new RuntimeException("Invalid save username: " + registerDto.getUsername() + " " + e.getMessage());
+            throw new RuntimeException("Invalid save User: " + registerDto.getUsername());
         }
     }
 }

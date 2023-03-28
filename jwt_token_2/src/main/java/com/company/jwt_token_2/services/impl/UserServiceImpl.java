@@ -7,6 +7,7 @@ import com.company.jwt_token_2.models.dtos.RegisterRequestDto;
 import com.company.jwt_token_2.models.enums.Status;
 import com.company.jwt_token_2.repository.RoleRep;
 import com.company.jwt_token_2.repository.UserRep;
+import com.company.jwt_token_2.security.secretKey.Encryption;
 import com.company.jwt_token_2.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +24,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     private final UserRep userRep;
     private final RoleRep roleRep;
+    private final Encryption encryption;
     private final PasswordEncoder passwordEncoder;
     RegisterMapper registerMapper = RegisterMapper.INSTANCE;
 
@@ -31,8 +33,9 @@ public class UserServiceImpl implements UserService {
         Role roleUser = roleRep.findByName("ROLE_USER");
         List<Role> userRoles = new ArrayList<>();
         userRoles.add(roleUser);
-        User user = new User();
 
+        String secretKey = encryption.encrypt(requestDto.getPassword());
+        User user = new User();
         user.setUsername(requestDto.getUsername());
         user.setFirstName(requestDto.getFirstName());
         user.setLastName(requestDto.getLastName());
@@ -40,10 +43,11 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(requestDto.getPassword()));
         user.setRoles(userRoles);
         user.setStatus(Status.ACTIVE);
+        user.setSecretKey(secretKey);
 
         User registeredUser = userRep.save(user);
 
-        log.info("IN register - user {} successfully registered", registeredUser);
+        //log.info("IN register - user {} successfully registered", registeredUser.getUsername());
 
         return registerMapper.toDto(registeredUser);
     }
@@ -58,7 +62,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByUsername(String username) {
         User result = userRep.findByUsername(username);
-        log.info("IN findByUsername - user {} found by username: {}", result,username);
+        //log.info("IN findByUsername - user {} found by username: {}", result.getUsername(),username);
         return result;
     }
 
@@ -69,13 +73,13 @@ public class UserServiceImpl implements UserService {
         if ( result == null){
             log.warn("IN findById - no user found y id: {}", id);
         }
-        log.info("IN findById - user {} found by id: {}", result);
+        //log.info("IN findById - user {} found by id: {}", result.getUsername());
         return result;
     }
 
     @Override
     public void delete(Long id) {
         userRep.deleteById(id);
-        log.info("IN delete - user with id: {} successfully deleted");
+        //log.info("IN delete - user with id: {} successfully deleted");
     }
 }
