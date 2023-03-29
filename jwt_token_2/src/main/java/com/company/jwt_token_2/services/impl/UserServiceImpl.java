@@ -1,9 +1,9 @@
 package com.company.jwt_token_2.services.impl;
 
-import com.company.jwt_token_2.mappers.RegisterMapper;
+import com.company.jwt_token_2.mappers.securityMapper.impl.RegisterMapper;
 import com.company.jwt_token_2.models.Role;
 import com.company.jwt_token_2.models.User;
-import com.company.jwt_token_2.models.dtos.RegisterRequestDto;
+import com.company.jwt_token_2.models.dtos.securityDto.RegisterRequestDto;
 import com.company.jwt_token_2.models.enums.Status;
 import com.company.jwt_token_2.repository.RoleRep;
 import com.company.jwt_token_2.repository.UserRep;
@@ -11,7 +11,6 @@ import com.company.jwt_token_2.security.secretKey.Encryption;
 import com.company.jwt_token_2.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

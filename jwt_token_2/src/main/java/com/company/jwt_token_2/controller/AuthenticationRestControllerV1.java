@@ -1,20 +1,17 @@
 package com.company.jwt_token_2.controller;
 
 import com.company.jwt_token_2.models.User;
-import com.company.jwt_token_2.models.dtos.AuthenticationRequestDto;
-import com.company.jwt_token_2.models.dtos.AuthenticationResponseDto;
-import com.company.jwt_token_2.models.dtos.RegisterRequestDto;
-import com.company.jwt_token_2.repository.RoleRep;
+import com.company.jwt_token_2.models.dtos.securityDto.AuthenticationRequestDto;
+import com.company.jwt_token_2.models.dtos.securityDto.AuthenticationResponseDto;
+import com.company.jwt_token_2.models.dtos.securityDto.RegisterRequestDto;
 import com.company.jwt_token_2.security.jwt.JwtTokenProvider;
 import com.company.jwt_token_2.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

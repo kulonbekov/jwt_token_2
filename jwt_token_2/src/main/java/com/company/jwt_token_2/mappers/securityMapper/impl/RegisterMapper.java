@@ -1,7 +1,7 @@
-package com.company.jwt_token_2.mappers;
+package com.company.jwt_token_2.mappers.securityMapper.impl;
 
 import com.company.jwt_token_2.models.User;
-import com.company.jwt_token_2.models.dtos.RegisterRequestDto;
+import com.company.jwt_token_2.models.dtos.securityDto.RegisterRequestDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

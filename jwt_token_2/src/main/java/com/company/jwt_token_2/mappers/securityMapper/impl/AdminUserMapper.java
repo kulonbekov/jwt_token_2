@@ -1,8 +1,7 @@
-package com.company.jwt_token_2.mappers;
+package com.company.jwt_token_2.mappers.securityMapper.impl;
 
 import com.company.jwt_token_2.models.User;
-import com.company.jwt_token_2.models.dtos.AdminUserDto;
-import com.company.jwt_token_2.models.dtos.UserDto;
+import com.company.jwt_token_2.models.dtos.securityDto.AdminUserDto;
 
 import java.util.List;
 

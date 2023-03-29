@@ -1,4 +1,4 @@
-package com.company.jwt_token_2.models.dtos;
+package com.company.jwt_token_2.models.dtos.securityDto;
 
 import com.company.jwt_token_2.models.Role;
 import com.company.jwt_token_2.models.enums.Status;

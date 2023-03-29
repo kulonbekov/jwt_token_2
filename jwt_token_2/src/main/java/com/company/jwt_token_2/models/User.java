@@ -13,8 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "users")
-@EnableJpaAuditing
+@Table(name = "tb_user")
 public class User extends BaseEntity{
 
     @Column(name = "username")
@@ -30,7 +29,7 @@ public class User extends BaseEntity{
     @Column(name = "secret_key")
     String secretKey;
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_roles",
+    @JoinTable(name = "tb_user_roles",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
     List<Role> roles;

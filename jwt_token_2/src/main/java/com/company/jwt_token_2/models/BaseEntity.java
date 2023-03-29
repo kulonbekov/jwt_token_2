@@ -33,6 +33,7 @@ public class BaseEntity {
     protected void onCreate() {
         created=new Date();
         updated=new Date();
+        status = Status.ACTIVE;
     }
     @PreUpdate
     protected void onUpdate(){

@@ -1,8 +1,8 @@
 package com.company.jwt_token_2.controller;
 
-import com.company.jwt_token_2.mappers.UserMapper;
+import com.company.jwt_token_2.mappers.securityMapper.impl.UserMapper;
 import com.company.jwt_token_2.models.User;
-import com.company.jwt_token_2.models.dtos.UserDto;
+import com.company.jwt_token_2.models.dtos.securityDto.UserUserDto;
 import com.company.jwt_token_2.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,13 +21,13 @@ public class UserRestControllerV1 {
     private final UserMapper userMapper;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<UserDto> getUserById(@PathVariable(name = "id") Long id){
+    public ResponseEntity<UserUserDto> getUserById(@PathVariable(name = "id") Long id){
         User user = userService.findById(id);
 
         if(user == null){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        UserDto result = userMapper.toDto(user);
+        UserUserDto result = userMapper.toDto(user);
 
         return new ResponseEntity<>(result,HttpStatus.OK);
     }

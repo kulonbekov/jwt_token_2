@@ -13,8 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "roles")
-@EnableJpaAuditing
+@Table(name = "tb_role")
 public class Role extends BaseEntity{
 
     @Column(name = "name")

@@ -1,4 +1,4 @@
-package com.company.jwt_token_2.models.dtos;
+package com.company.jwt_token_2.models.dtos.securityDto;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;

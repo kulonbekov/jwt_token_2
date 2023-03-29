@@ -1,10 +1,8 @@
 package com.company.jwt_token_2.controller;
 
-import com.company.jwt_token_2.mappers.AdminUserMapper;
-import com.company.jwt_token_2.mappers.UserMapper;
+import com.company.jwt_token_2.mappers.securityMapper.impl.AdminUserMapper;
 import com.company.jwt_token_2.models.User;
-import com.company.jwt_token_2.models.dtos.AdminUserDto;
-import com.company.jwt_token_2.models.dtos.UserDto;
+import com.company.jwt_token_2.models.dtos.securityDto.AdminUserDto;
 import com.company.jwt_token_2.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

@@ -1,7 +1,7 @@
 package com.company.jwt_token_2.services;
 
 import com.company.jwt_token_2.models.User;
-import com.company.jwt_token_2.models.dtos.RegisterRequestDto;
+import com.company.jwt_token_2.models.dtos.securityDto.RegisterRequestDto;
 
 import java.util.List;
 
